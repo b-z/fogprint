@@ -1,0 +1,11 @@
+{
+  "name": "fogprint",
+  "version": "0.1.0",
+  "description": "Read Fog of World data and analyse where you have and have not been: countries, regions, municipalities, railways, roads and streets; plan trips that fill the gaps; compare snapshots; render maps.",
+  "author": {
+    "name": "b-z"
+  },
+  "homepage": "https://github.com/b-z/fogprint",
+  "license": "MIT",
+  "keywords": ["fog-of-world", "travel", "footprint", "gps", "map", "trip-planning"]
+}

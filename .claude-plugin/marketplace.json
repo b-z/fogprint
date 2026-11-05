@@ -1,0 +1,14 @@
+{
+  "name": "fogprint",
+  "description": "Analyse your Fog of World data with Claude: where you have been, what is left, and how to get there",
+  "owner": {
+    "name": "b-z"
+  },
+  "plugins": [
+    {
+      "name": "fogprint",
+      "source": "./",
+      "description": "Reads Fog of World sync data (iCloud / Dropbox folder, zip or snapshot) and answers questions about it: visited and unvisited regions worldwide, coverage of railways, roads and streets, unexplored pockets near a place, snapshot diffs and maps."
+    }
+  ]
+}
