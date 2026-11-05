@@ -209,6 +209,29 @@ class Boundaries:
         b.tree = shapely.STRtree(b.geoms)
         return b
 
+    def within(self, geom) -> "Boundaries":
+        """Only the regions whose interior point lies inside `geom`."""
+        import shapely
+
+        b = self.subset(geom.bounds)
+        keep = [i for i, g in enumerate(b.geoms) if geom.contains(g.representative_point())]
+        b.features = [b.features[i] for i in keep]
+        b.geoms = [b.geoms[i] for i in keep]
+        b.tree = shapely.STRtree(b.geoms)
+        return b
+
+    def find(self, query: str) -> int:
+        """Index of the region whose code or any name matches `query`."""
+        q = query.strip().lower()
+        for i, f in enumerate(self.features):
+            p = f["props"]
+            names = {str(v).lower() for k, v in p.items() if v and (k.lower().startswith("name") or k.lower() in
+                     ("iso_3166_2", "shapename", "shapeiso", "woe_name", "gn_name"))}
+            names |= {n.split(" ")[0] for n in names}  # "kochi prefecture" -> "kochi"
+            if q in names or q.replace("ō", "o") in {n.replace("ō", "o") for n in names}:
+                return i
+        raise ValueError(f"no region matches {query!r}")
+
     def assign(self, lng: np.ndarray, lat: np.ndarray, snap_deg: float = 0.03) -> np.ndarray:
         """Index of the region containing each point; -1 if none. Points just
         off the coast are snapped to the nearest region within `snap_deg`."""
@@ -267,6 +290,7 @@ def region_stats(fog: FogMap, b: Boundaries, zoom: int = 16, include_unvisited: 
             "region_km2": round(float(total[i]), 1),
             "explored_pct": round(100 * km2 / total[i], 3) if total[i] > 0 else None,
             "center": [round(lng0, 5), round(lat0, 5)],
+            "_index": i,
         })
     out.sort(key=lambda r: (-r["explored_km2"], r["name"]))
     return out

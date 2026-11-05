@@ -22,31 +22,58 @@ fogprint 读取 [世界迷雾（Fog of World）](https://fogofworld.app) 的同�
 
 ## 示例
 
-以下都来自同一个真实的世界迷雾账号。
+下面是在 Claude Code 里的真实对话，数据来自一个真实的世界迷雾账号。引用块开头是 Claude 自己运行的命令，你只需要提问。
 
-<p align="center"><img src="../images/world.png" alt="世界地图上的足迹" width="100%"></p>
-<p align="center"><code>fogprint render --src all --basemap none --bbox=-12,-48,180,62</code></p>
+### “日本的都道府县我还有哪些没去过？给最后那个排个周末行程。”
 
-| 日本：蓝色是 2024 年 1 月快照之后新增的 | 一次旅行，OpenStreetMap 底图加迷雾 |
-|---|---|
-| ![日本，新增部分为蓝色](../images/japan.png) | ![高知之行](../images/kochi.jpg) |
-| `fogprint render --src all --basemap none --new-since snapshot:2024-01 --bbox 128.3,30.6,146.2,45.8` | `fogprint render --src all --bbox 133.44,33.48,133.66,33.62` |
+> **Claude** · 运行了 `fogprint regions --level admin1 --country JPN --unvisited-only --src all`
+>
+> 47 个都道府县你去过 **46 个**，只剩 **福井县**，而且从来没靠近过：离福井站最近的足迹在 25 公里外，离东寻坊也有 13 公里。
+>
+> 北陆新干线 2024 年 3 月通到福井以后，从东京过去大约 3 小时，一个周末就够：
+>
+> - **周六**：新干线到福井 → 一乘谷朝仓氏遗迹 → 下午去永平寺 → 住芦原温泉。
+> - **周日**：上午东寻坊 → 胜山的福井县立恐龙博物馆 → 从福井回东京。
+>
+> 这样 47 个就齐了。
 
-AI 读到的数据长这样（`fogprint regions --level admin1 --country JPN --unvisited-only`，有删减）：
+### “这次去高知，哪些市町村没去到？排个两天的自驾把它们补上。”
 
-```json
-{
- "boundaries": "Natural Earth (public domain)",
- "regions_total": 47,
- "regions_visited": 46,
- "regions": [
-  {"name": "Fukui Prefecture", "id": "JP-18", "visited": false, "explored_km2": 0.0,
-   "region_km2": 4220.2, "center": [136.42952, 35.80352]}
- ]
-}
-```
+> **Claude** · 运行了 `fogprint regions --level ADM2 --country JPN --within Kochi --unvisited-only --geojson-out gaps.geojson` 和 `fogprint render --overlay gaps.geojson --basemap none`
+>
+> 高知县 34 个市町村你去了 **23 个**，基本都在沿海。没去的 11 个（红色）集中在内陆三块：
+>
+> <p align="center"><img src="../images/kochi-gaps.png" alt="高知县：橙色是走过的路，红色是没去过的市町村" width="100%"></p>
+>
+> - **第一天，沿仁淀川**（7 个）：高知 → 日高村 → 佐川町 → 越知町 → 仁淀川町（安居溪谷）→ 津野町（四国喀斯特的天狗高原）→ 住梼原町（隈研吾设计的木结构建筑）。
+> - **第二天，岭北**（3 个）：翻山去本山町、土佐町（早明浦水坝）和大川村（除离岛外日本人口最少的村）→ 回高知。
+> - **三原村**（西南角）和 **马路村**（东边的柚子村）太绕，留到下次去足摺岬或室户时顺路。
 
-更多输出样例：[总览](../examples/summary.json)、[按地区统计](../examples/regions-admin1-JPN.json)、[快照对比](../examples/diff-snapshots.json)、[一次旅行按县汇总](../examples/places-trip-database.json)。
+### “这次高知之行在地图上新增了什么？”
+
+> **Claude** · 运行了 `fogprint diff snapshot:2026-10 "Kochi 2026-11"` 和 `fogprint render --src all --around 33.56,133.55`
+>
+> 这次一共记录了 16.1 km²，其中 **8.8 km² 是新的**。一半在高知县本身（4.2 km²，你第一次去），其余是路上的：德岛、兵库、爱知、静冈都多了几段新路线。
+>
+> <p align="center"><img src="../images/kochi.jpg" alt="高知市区：迷雾下走过的街道被点亮" width="100%"></p>
+
+### “从 2024 年 1 月到现在，我的地图长了多少？”
+
+> **Claude** · 运行了 `fogprint diff snapshot:2024-01 snapshot:2026-10` 和 `fogprint render --basemap none --new-since snapshot:2024-01`
+>
+> 从 386 km² 涨到 **656 km²**（+270 km²），国家和地区从 8 个变成 **29 个**。国外新增最多的是西藏（28 km²）、青海和哈萨克斯坦的曼格斯套州；国内是东京、鹿儿岛、千叶、北海道和富山。蓝色是新增的部分：
+>
+> <p align="center"><img src="../images/japan.png" alt="日本：橙色是 2024 年 1 月以前的足迹，蓝色是之后新增的" width="100%"></p>
+
+### “把我去过的地方都画出来。”
+
+> **Claude** · 运行了 `fogprint summary --src all` 和 `fogprint render --src all --basemap none --bbox=-12,-48,180,62`
+>
+> 去过 29 个国家和地区，探索面积 664 km²。日本 46/47 个都道府县，中国 22 个省级行政区，法国 26 个省。
+>
+> <p align="center"><img src="../images/world.png" alt="世界地图上的足迹" width="100%"></p>
+
+JSON 输出样例：[总览](../examples/summary.json)、[按地区统计](../examples/regions-admin1-JPN.json)、[快照对比](../examples/diff-snapshots.json)、[一次旅行按县汇总](../examples/places-trip-database.json)。
 
 ## 安装
 
@@ -98,7 +125,7 @@ fogprint summary
 |---|---|
 | `locate` | 列出本机找到的数据 |
 | `summary` | 探索面积、范围、去过的国家和一级行政区 |
-| `regions` | 按国家、州省（`admin1`）、市县区（`--level ADM2 --country CHN`）或任意 GeoJSON 多边形统计探索面积；`--unvisited-only` 只列没去过的 |
+| `regions` | 按国家、州省（`admin1`）、市县区（`--level ADM2 --country CHN`）或任意 GeoJSON 多边形统计探索面积；`--unvisited-only` 只列没去过的，`--within Kochi` 限定在某个省/县内，`--geojson-out` 输出给地图用 |
 | `places` | 按州、省、都道府县汇总去过的地方 |
 | `check` | 某个点是否探索过，离最近的已探索位置多远 |
 | `around` | 某点周围各方向的覆盖率，以及陆地上最大的几块空白 |

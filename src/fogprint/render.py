@@ -83,7 +83,7 @@ def render(fog: FogMap, bbox, out: str, max_px: int = 1600, basemap: str = "osm"
     drawn in a solid color. `overlays`: GeoJSON FeatureCollections of lines,
     drawn with the feature property "color" (default red). `highlight`: a
     second FogMap (e.g. area added by a trip) drawn in blue on top."""
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageColor, ImageDraw, ImageFont
 
     w, s, e, n = bbox
     # smallest zoom (<= 22) whose image is at least max_px; scaled down at the end
@@ -142,26 +142,55 @@ def render(fog: FogMap, bbox, out: str, max_px: int = 1600, basemap: str = "osm"
         attribution = "Natural Earth"
 
     if overlays:
+        lw = max(2, round(max(W, H) / 700))
+        fill_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        fd = ImageDraw.Draw(fill_layer)
         d = ImageDraw.Draw(canvas)
-        lw = max(2, round(min(W, H) / 400))
+        labels = []
+
+        def to_px(coords):
+            c = np.asarray(coords, float)
+            px, py = geo.lnglat_to_px(c[:, 0], c[:, 1], z)
+            return list(zip(px - x0, py - y0))
+
         for fc in overlays:
             for f in fc.get("features", []):
                 g = f.get("geometry") or {}
-                color = (f.get("properties") or {}).get("color", "#e41a1c")
-                if g.get("type") == "LineString":
-                    parts = [g["coordinates"]]
-                elif g.get("type") == "MultiLineString":
-                    parts = g["coordinates"]
-                else:
-                    parts = []
-                for part in parts:
-                    c = np.asarray(part, float)
-                    px, py = geo.lnglat_to_px(c[:, 0], c[:, 1], z)
-                    d.line(list(zip(px - x0, py - y0)), fill=color, width=lw)
-                if g.get("type") == "Point":
-                    px, py = geo.lnglat_to_px(*g["coordinates"][:2], z)
-                    r = lw * 3
-                    d.ellipse((px - x0 - r, py - y0 - r, px - x0 + r, py - y0 + r), fill=color, outline="white")
+                props = f.get("properties") or {}
+                color = props.get("color", "#e41a1c")
+                t = g.get("type")
+                if t in ("Polygon", "MultiPolygon"):
+                    polys = [g["coordinates"]] if t == "Polygon" else g["coordinates"]
+                    rgb = ImageColor.getrgb(color)[:3]
+                    for poly in polys:
+                        fd.polygon(to_px(poly[0]), fill=rgb + (int(props.get("fill_alpha", 70)),))
+                        for ring in poly:
+                            fd.line(to_px(ring), fill=rgb + (230,), width=max(1, lw // 2))
+                    if props.get("label"):
+                        import shapely.geometry
+                        p = shapely.geometry.shape(g).representative_point()
+                        labels.append((to_px([(p.x, p.y)])[0], str(props["label"]), rgb))
+                elif t in ("LineString", "MultiLineString"):
+                    for part in ([g["coordinates"]] if t == "LineString" else g["coordinates"]):
+                        d.line(to_px(part), fill=color, width=lw * 2)
+                elif t == "Point":
+                    (px, py), = to_px([g["coordinates"][:2]])
+                    r = lw * 4
+                    d.ellipse((px - r, py - r, px + r, py + r), fill=color, outline="white", width=max(1, lw // 2))
+                    if props.get("label"):
+                        labels.append(((px, py - 3 * r), str(props["label"]), ImageColor.getrgb(color)[:3]))
+        canvas = Image.alpha_composite(canvas, fill_layer)
+        if labels:
+            d = ImageDraw.Draw(canvas)
+            fs = max(12, round(max(W, H) / 90))
+            try:
+                font = ImageFont.load_default(size=fs)
+            except TypeError:
+                font = ImageFont.load_default()
+            for (px, py), text, rgb in labels:
+                tw = d.textlength(text, font=font)
+                d.text((px - tw / 2, py - fs / 2), text, fill=tuple(int(v * 0.6) for v in rgb), font=font,
+                       stroke_width=max(2, fs // 6), stroke_fill="white")
     if max(W, H) > max_px:
         f = max_px / max(W, H)
         canvas = canvas.resize((max(1, round(W * f)), max(1, round(H * f))), Image.LANCZOS)

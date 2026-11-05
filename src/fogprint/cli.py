@@ -142,9 +142,24 @@ def cmd_regions(args):
                         name_field=args.name_field, lang=args.lang)
     if args.bbox:
         b = b.subset(geo.parse_bbox(args.bbox))
+    if args.within:
+        parent = Boundaries.load("admin1", country=args.country, lang=args.lang)
+        b = b.within(parent.geoms[parent.find(args.within)])
     rs = region_stats(fog, b, zoom=args.zoom, include_unvisited=not args.visited_only, min_km2=args.min_km2)
     if args.unvisited_only:
         rs = [r for r in rs if not r["visited"]]
+    if args.geojson_out:
+        import shapely
+        import shapely.geometry
+        feats = []
+        for r in rs:
+            g = shapely.simplify(b.geoms[r["_index"]], 0.0005)
+            feats.append({"type": "Feature", "geometry": shapely.geometry.mapping(g), "properties": {
+                "name": r["name"], "visited": r["visited"], "explored_km2": r["explored_km2"], "label": r["name"],
+                "color": "#2b8cbe" if r["visited"] else "#e41a1c"}})
+        Path(args.geojson_out).write_text(json.dumps({"type": "FeatureCollection", "features": feats}, ensure_ascii=False))
+    for r in rs:
+        r.pop("_index", None)
     visited = sum(r["visited"] for r in rs) if not args.unvisited_only else None
     out = {"source": src_info(fog), "boundaries": b.attribution, "regions_total": len(b.features),
            "regions_visited": visited if visited is not None else len(b.features) - len(rs),
@@ -313,6 +328,9 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--top", type=int)
     s.add_argument("--bbox", help="limit to W,S,E,N")
     s.add_argument("--out", help="write the full result to this JSON file")
+    s.add_argument("--within", metavar="REGION", help="only regions inside this state / province / prefecture "
+                                                     "(name in any language or ISO code such as JP-39)")
+    s.add_argument("--geojson-out", help="write the listed regions as polygons (for render --overlay; red = unvisited)")
     s.set_defaults(func=cmd_regions)
 
     s = sub.add_parser("places", parents=[common], help="explored area by state / province / prefecture, with extents")

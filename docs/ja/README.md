@@ -22,31 +22,58 @@ fogprint は [フォグオブワールド（Fog of World）](https://fogofworld.
 
 ## 例
 
-すべて実際のフォグオブワールドのアカウント 1 つのデータです。
+Claude Code での実際の会話です。データは実在するフォグオブワールドのアカウント 1 つのものです。引用の先頭は Claude が自分で実行したコマンドで、あなたは質問するだけです。
 
-<p align="center"><img src="../images/world.png" alt="世界地図上の足跡" width="100%"></p>
-<p align="center"><code>fogprint render --src all --basemap none --bbox=-12,-48,180,62</code></p>
+### 「まだ行ったことのない都道府県は？ 最後のひとつに行く週末プランを作って」
 
-| 日本：青は 2024 年 1 月のスナップショット以降に増えた部分 | 1 回の旅行、OpenStreetMap に霧を重ねたもの |
-|---|---|
-| ![日本、新しい部分は青](../images/japan.png) | ![高知旅行](../images/kochi.jpg) |
-| `fogprint render --src all --basemap none --new-since snapshot:2024-01 --bbox 128.3,30.6,146.2,45.8` | `fogprint render --src all --bbox 133.44,33.48,133.66,33.62` |
+> **Claude** · `fogprint regions --level admin1 --country JPN --unvisited-only --src all` を実行
+>
+> 47 都道府県のうち **46** に行っています。残りは **福井県** だけで、近づいたこともありません。いちばん近い足跡でも福井駅から 25 km、東尋坊から 13 km です。
+>
+> 2024 年 3 月に北陸新幹線が福井まで延びたので、東京から約 3 時間。週末で回れます。
+>
+> - **土曜**：新幹線で福井へ → 一乗谷朝倉氏遺跡 → 午後は永平寺 → あわら温泉泊。
+> - **日曜**：午前に東尋坊 → 勝山の福井県立恐竜博物館 → 福井から東京へ。
+>
+> これで 47 都道府県制覇です。
 
-エージェントが読むデータ（`fogprint regions --level admin1 --country JPN --unvisited-only`、一部省略）：
+### 「高知旅行で行けなかった市町村は？ 2 日間のドライブで回りたい」
 
-```json
-{
- "boundaries": "Natural Earth (public domain)",
- "regions_total": 47,
- "regions_visited": 46,
- "regions": [
-  {"name": "Fukui Prefecture", "id": "JP-18", "visited": false, "explored_km2": 0.0,
-   "region_km2": 4220.2, "center": [136.42952, 35.80352]}
- ]
-}
-```
+> **Claude** · `fogprint regions --level ADM2 --country JPN --within Kochi --unvisited-only --geojson-out gaps.geojson` と `fogprint render --overlay gaps.geojson --basemap none` を実行
+>
+> 高知県 34 市町村のうち **23** に行っていて、ほとんどが海沿いです。行っていない 11 市町村（赤）は内陸の 3 か所に固まっています。
+>
+> <p align="center"><img src="../images/kochi-gaps.png" alt="高知県：オレンジが走った道、赤が未訪問の市町村" width="100%"></p>
+>
+> - **1 日目、仁淀川沿い**（7 市町村）：高知 → 日高村 → 佐川町 → 越知町 → 仁淀川町（安居渓谷）→ 津野町（四国カルストの天狗高原）→ 梼原町泊（隈研吾の木造建築群）。
+> - **2 日目、嶺北**（3 町村）：山を越えて本山町、土佐町（早明浦ダム）、大川村（離島を除いて日本一人口の少ない村）→ 高知へ。
+> - **三原村**（南西の奥）と **馬路村**（東のゆずの村）は遠回りになるので、次に足摺岬や室戸へ行くときに。
 
-ほかの出力例：[概要](../examples/summary.json)、[地域別](../examples/regions-admin1-JPN.json)、[スナップショットの差分](../examples/diff-snapshots.json)、[1 回の旅行を県別に](../examples/places-trip-database.json)。
+### 「高知旅行で地図に何が増えた？」
+
+> **Claude** · `fogprint diff snapshot:2026-10 "Kochi 2026-11"` と `fogprint render --src all --around 33.56,133.55` を実行
+>
+> 今回の記録は 16.1 km²、そのうち **8.8 km² が新しいエリア**です。半分は高知県内（4.2 km²、初訪問）で、残りは移動中の分です。徳島、兵庫、愛知、静岡に新しい区間が増えました。
+>
+> <p align="center"><img src="../images/kochi.jpg" alt="高知市中心部：霧の中で歩いた道だけが晴れている" width="100%"></p>
+
+### 「2024 年 1 月から地図はどれだけ広がった？」
+
+> **Claude** · `fogprint diff snapshot:2024-01 snapshot:2026-10` と `fogprint render --basemap none --new-since snapshot:2024-01` を実行
+>
+> 386 km² から **656 km²** へ（+270 km²）、国・地域は 8 から **29** に増えました。海外で多いのはチベット（28 km²）、青海、カザフスタンのマンギスタウ州。国内では東京、鹿児島、千葉、北海道、富山です。青が増えた部分です。
+>
+> <p align="center"><img src="../images/japan.png" alt="日本：オレンジが 2024 年 1 月以前、青がその後に増えた足跡" width="100%"></p>
+
+### 「行ったところを全部地図にして」
+
+> **Claude** · `fogprint summary --src all` と `fogprint render --src all --basemap none --bbox=-12,-48,180,62` を実行
+>
+> 29 の国と地域、探索面積 664 km²。日本は 46/47 都道府県、中国は 22 の省級行政区、フランスは 26 県。
+>
+> <p align="center"><img src="../images/world.png" alt="世界地図上の足跡" width="100%"></p>
+
+JSON の出力例：[概要](../examples/summary.json)、[地域別](../examples/regions-admin1-JPN.json)、[スナップショットの差分](../examples/diff-snapshots.json)、[1 回の旅行を県別に](../examples/places-trip-database.json)。
 
 ## インストール
 
@@ -98,7 +125,7 @@ Python 3.10 以上。依存パッケージ：numpy、shapely、pillow。
 |---|---|
 | `locate` | このマシンで見つかったデータの一覧 |
 | `summary` | 探索面積、範囲、訪れた国と第 1 級行政区 |
-| `regions` | 国、州・県（`admin1`）、市区町村（`--level ADM2 --country JPN`）、任意の GeoJSON ポリゴンごとの探索面積。`--unvisited-only` で未訪問だけ |
+| `regions` | 国、州・県（`admin1`）、市区町村（`--level ADM2 --country JPN`）、任意の GeoJSON ポリゴンごとの探索面積。`--unvisited-only` で未訪問だけ、`--within Kochi` で 1 つの県内に限定、`--geojson-out` で地図用に出力 |
 | `places` | 州・省・都道府県ごとにまとめた訪問先 |
 | `check` | 地点が探索済みか、最寄りの探索済み地点までの距離 |
 | `around` | 地点の周囲の方角別カバー率と、陸上の大きな未探索エリア |

@@ -45,7 +45,7 @@ By default commands read the main database (live `Sync` folder, else the newest 
 |---|---|
 | `fogprint summary` | total explored area, extent, countries, number of first-level regions per country |
 | `fogprint regions --level country\|admin1 [--country JPN]` | per region: visited, explored km², share. `--unvisited-only`, `--visited-only`, `--bbox` |
-| `fogprint regions --level ADM2 --country FRA` | the same for municipalities / counties / districts via geoBoundaries (ADM1..ADM5, varies by country) |
+| `fogprint regions --level ADM2 --country FRA [--within Bretagne]` | the same for municipalities / counties / districts via geoBoundaries (ADM1..ADM5, varies by country); `--within` keeps those inside one state / province / prefecture; `--geojson-out` writes them as polygons for `render --overlay` (red = unvisited) |
 | `fogprint regions --boundaries file.geojson --name-field NAME` | any polygons: national parks, wards, islands |
 | `fogprint places` | explored area grouped by state / province / prefecture with extents: "where have I been" at a glance |
 | `fogprint check LAT,LNG ...` | is a point explored, distance to the nearest explored pixel |
@@ -62,7 +62,7 @@ Run `fogprint <command> -h` for all options. `--lang zh|ja|en` sets region-name 
 
 **Overview / report.** `summary`, then `places --top 30`, then `render --basemap none` for the whole extent or a country. Lead with the headline numbers (countries, regions per country, km²), then what stands out: densest areas, longest unexplored stretches near home, regions almost complete.
 
-**Where to go next (unvisited regions).** `regions --level admin1 --country <ISO3> --unvisited-only`, or `--level ADM2` for municipalities. Rank candidates by what the user cares about (distance from home, number of new regions per trip, scenery, season) and propose concrete trips that tick off several unvisited regions at once. Check that the route between them is realistic.
+**Where to go next (unvisited regions).** `regions --level admin1 --country <ISO3> --unvisited-only`, or `--level ADM2 --within <state>` for municipalities; add `--geojson-out gaps.geojson` and `render --overlay gaps.geojson --basemap none` to show them. Rank candidates by what the user cares about (distance from home, number of new regions per trip, scenery, season) and propose concrete trips that tick off several unvisited regions at once. Check that the route between them is realistic.
 
 **Fill gaps by train.** `osm rail --bbox <area> --out rail.geojson`, then `lines rail.geojson --gaps-out gaps.geojson`. Lines are grouped by OSM route name; the same line in two directions may appear twice. Propose itineraries that ride the largest unexplored stretches; look up real timetables and passes (web search) before giving times. Draw with `render --overlay gaps.geojson`.
 

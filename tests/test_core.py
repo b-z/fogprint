@@ -166,3 +166,20 @@ def test_read_gpx_kml(tmp_path):
                    '<LineString><coordinates>139,35,0 139.1,35.1,0</coordinates></LineString></Placemark></Document></kml>')
     assert read_lines(str(gpx))[0]["props"]["name"] == "a"
     assert read_lines(str(kml))[0]["coords"] == [(139.0, 35.0), (139.1, 35.1)]
+
+
+def test_render_overlays(tmp_path, monkeypatch):
+    from PIL import Image
+
+    from fogprint import regions, render
+
+    monkeypatch.setattr(regions, "natural_earth", lambda kind: (_ for _ in ()).throw(OSError("offline")))
+    fog = FogMap.load(write_sync(tmp_path / "Sync", line_pixels(LNG, LAT, LNG + 0.01, LAT)))
+    poly = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"label": "X", "color": "#e41a1c"},
+            "geometry": {"type": "Polygon", "coordinates": [[[LNG, LAT], [LNG + 0.01, LAT], [LNG + 0.01, LAT + 0.01],
+                                                             [LNG, LAT]]]}}]}
+    out = tmp_path / "m.png"
+    r = render.render(fog, (LNG - 0.01, LAT - 0.01, LNG + 0.02, LAT + 0.02), str(out), max_px=300, basemap="none",
+                      overlays=[poly], highlight=fog)
+    im = Image.open(out)
+    assert max(im.size) == 300 and r["explored_px"] > 0
