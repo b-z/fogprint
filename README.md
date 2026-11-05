@@ -49,6 +49,41 @@ Real conversations in Claude Code, run on one real Fog of World account. The com
 > - **Day 2, Reihoku** (3): back over the mountains to Motoyama, Tosa town (Sameura Dam) and Ōkawa, Japan's least populous village off the islands → Kochi.
 > - **Mihara** (deep southwest) and **Umaji** (yuzu village, far east) are out of the way; add them when you next go to Cape Ashizuri or Muroto.
 
+### "I have a 5-day Seishun 18 ticket from Tokyo. Which JR lines would add the most new track, with good places to stop?"
+
+> **Claude** · built JR line shapes from station coordinates, ran `fogprint lines jr.geojson --tolerance-m 400` on every conventional JR line, then planned a loop
+>
+> Around Tokyo you have ridden almost everything; the big gaps are on the Sea of Japan side. This loop adds about **850 km of track you have never been on**. The six main lines alone:
+>
+> | Line | Length | New to you |
+> |---|---|---|
+> | Ōu Main Line, Hirosaki – Shinjō | 282 km | 280 km |
+> | Uetsu Main Line, Shibata – Akita | 233 km | 233 km |
+> | Yamagata Line, Fukushima – Shinjō | 140 km | 116 km |
+> | Jōetsu Line | 148 km | 68 km |
+> | Gonō Line | 135 km | 44 km |
+> | Hakushin Line | 26 km | 25 km |
+>
+> - **Day 1**: Tokyo → Takasaki → Jōetsu Line (Doai, the station 70 m underground) → Niigata → Hakushin and Uetsu lines → Murakami, stay at Senami Onsen.
+> - **Day 2**: Uetsu Line along the coast: Kuwagawa (Sasagawa-nagare), Tsuruoka (Kamo Aquarium, Mt. Haguro), Sakata (Sankyo Soko warehouses), Kisakata → Akita.
+> - **Day 3**: Resort Shirakami along the Gonō Line: Jūniko (Aoike pond), Henashi (Furōfushi Onsen), Senjōjiki → Hirosaki.
+> - **Day 4**: Ōu Line south: Ōdate (Akita dogs), Ōmagari (side trip to Kakunodate), Yokote → Shinjō.
+> - **Day 5**: Yamagata Line: Yamagata, Akayu, Yonezawa (Yonezawa beef), Tōge (chikara-mochi on the platform) → Fukushima → Tōhoku Line → Tokyo.
+>
+> The Resort Shirakami needs a reserved-seat ticket on top of the pass, and trains on the Gonō and Jōetsu lines are few: check each day in a timetable app before you go.
+>
+> <p align="center"><img src="docs/images/seishun18-5day.jpg" alt="Five-day rail loop: thick lines are new track, thin dashed lines are already ridden" width="70%"></p>
+
+### "I'm in Kyoto this weekend. Plan a walk through streets I have never walked."
+
+> **Claude** · ran `fogprint around 35.0037,135.7595 --radius-km 3 --zoom 17`, routed a walk through the biggest gaps with OpenStreetMap foot routing, checked it with `fogprint lines walk.geojson`, and drew it with `fogprint render --overlay walk.geojson`
+>
+> Within 3 km of Shijō-Karasuma you have covered 60% of the 250 m blocks. The east and south are done (82% and 80%); the north, west and southwest are mostly blank (37%, 46%, 38%). This **13.3 km walk (about 3 hours) is 74% on streets you have never walked**:
+>
+> 1 Kyoto Station → 2 Nishi Hongan-ji → 3 Shimabara → 4 Mibu-dera → 5 Shinsen-en → 6 Nijō Castle → 7–8 Nishijin weaving district → 9 Seimei Shrine → 10 Hamaguri Gate → 11 Kyoto Imperial Palace → 12 Imadegawa Gate → 13 Demachiyanagi, where the Kamo River forks.
+>
+> <p align="center"><img src="docs/images/kyoto-walk.jpg" alt="Kyoto: fog over unexplored streets, the planned walk in red" width="80%"></p>
+
 ### "What did my Kochi trip add to the map?"
 
 > **Claude** · ran `fogprint diff snapshot:2026-10 "Kochi 2026-11"` and `fogprint render --src all --around 33.56,133.55`
@@ -67,9 +102,9 @@ Real conversations in Claude Code, run on one real Fog of World account. The com
 
 ### "Show me everywhere I have been."
 
-> **Claude** · ran `fogprint summary --src all` and `fogprint render --src all --basemap none --bbox=-12,-48,180,62`
+> **Claude** · ran `fogprint summary` and `fogprint render --basemap none --bbox=-12,-48,180,62`
 >
-> 29 countries and regions, 664 km² explored. Japan 46/47 prefectures, China 22 provinces, France 26 departments.
+> 29 countries and regions, 653 km² explored. Japan 46/47 prefectures, China 22 provinces, France 26 departments.
 >
 > <p align="center"><img src="docs/images/world.png" alt="Explored area on a world map" width="100%"></p>
 

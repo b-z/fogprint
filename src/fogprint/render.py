@@ -59,10 +59,15 @@ def _draw_land(canvas, bbox, z, x0, y0):
 
 
 def _mask(fog: FogMap, bbox, z, x0, y0, W, H, r) -> np.ndarray:
-    gx, gy, _ = fog.crop(bbox).grid(z)
+    zz = min(z, 22)
+    f = 1 << (z - zz)  # output pixels per data pixel when zoomed past the data resolution
+    gx, gy, _ = fog.crop(bbox).grid(zz)
     mask = np.zeros((H, W), bool)
-    m = (gx >= x0) & (gx < x0 + W) & (gy >= y0) & (gy < y0 + H)
-    mask[gy[m] - y0, gx[m] - x0] = True
+    for dy in range(f):
+        for dx in range(f):
+            x, y = gx * f + dx, gy * f + dy
+            m = (x >= x0) & (x < x0 + W) & (y >= y0) & (y < y0 + H)
+            mask[y[m] - y0, x[m] - x0] = True
     # thicken thin tracks so they stay visible at small scales
     if r > 0:
         m0 = mask.copy()
@@ -87,7 +92,7 @@ def render(fog: FogMap, bbox, out: str, max_px: int = 1600, basemap: str = "osm"
 
     w, s, e, n = bbox
     # smallest zoom (<= 22) whose image is at least max_px; scaled down at the end
-    for z in range(0, 23):
+    for z in range(0, 25):
         x0, y0 = geo.lnglat_to_px(w, n, z)
         x1, y1 = geo.lnglat_to_px(e, s, z)
         if max(x1 - x0, y1 - y0) >= max_px:
