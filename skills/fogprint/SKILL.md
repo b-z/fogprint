@@ -30,7 +30,7 @@ It searches the iCloud Drive folder (`~/Library/Mobile Documents/iCloud~com~olli
 
 If nothing is found, ask the user where their data is (in the app: Settings → sync; iCloud Drive or Dropbox), or for a copy of the Sync folder or a zip of it, and pass `--src <path>` (or `--root <folder>` to search a folder). In a sandbox without access to the user's disk, ask them to upload the folder or zip.
 
-By default commands read the main database (live `Sync` folder, else the newest snapshot, else the newest zip). `--src "<database name>"` reads one database, `--src all` merges every database, `--src snapshot:2024-08` picks a snapshot. If `locate` shows trip databases or the default is only a snapshot or zip, say in one line which data you used and offer `--src all`.
+By default commands read the main database (live `Sync` folder, else the newest snapshot, else the newest zip). `--src "<database name>"` reads one database, `--src all` merges every database, `--src snapshot:2024-08` (or `2024-08-15`) picks a snapshot, and `--src <path to a .fwss file>` reads that snapshot directly. If `locate` shows trip databases or the default is only a snapshot or zip, say in one line which data you used and offer `--src all`.
 
 ## 3. What the data is, and is not
 

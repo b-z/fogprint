@@ -152,6 +152,14 @@ fogprint summary
 
 在这个文件夹里，它会读取当前的 `Sync` 文件夹、`Databases/*.fwdb` 里的其他数据库（很多人一次旅行建一个）、`Databases/Primary.fwdb/Snapshots` 里带日期的快照，以及 `Sync*.zip` 备份。数据在别处时，用 `fogprint --src <文件夹或 zip>` 指定，或设置环境变量 `FOGPRINT_DATA`。
 
+快照文件（`Snapshot-<日期>.fwss`）可以直接作为输入。世界迷雾会定期自动存快照，所以也可以用它看某一天的足迹，或者对比两次快照，看一段时间里新点亮了哪些地方：
+
+```sh
+fogprint summary --src "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261004T005208+0900.fwss"
+fogprint summary --src snapshot:2026-10-04          # 按日期指定（只写 YYYY-MM 时取当月最新的一个）
+fogprint diff snapshot:2026-10-04 snapshot:2026-10-19
+```
+
 ## 命令
 
 所有命令都输出 JSON。点的写法是 `纬度,经度`（和从 Google 地图复制出来的顺序一样）；范围写成 `--bbox 西,南,东,北`（第一个数是负数时写成 `--bbox=-10,...`）。

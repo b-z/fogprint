@@ -152,6 +152,14 @@ Python 3.10 以上。依存パッケージ：numpy、shapely、pillow。
 
 このフォルダの中の、現在の `Sync` フォルダ、`Databases/*.fwdb` にある別のデータベース（旅行ごとに作る人も多い）、`Databases/Primary.fwdb/Snapshots` にある日付付きスナップショット、`Sync*.zip` のバックアップを読みます。ほかの場所にある場合は `fogprint --src <フォルダまたは zip>` で指定するか、環境変数 `FOGPRINT_DATA` を設定してください。
 
+スナップショット（`Snapshot-<日時>.fwss`）もそのまま入力にできます。フォグオブワールドは定期的にスナップショットを保存するので、ある日の時点の地図を見たり、2 つを比べてその間に晴れた場所を調べたりできます。
+
+```sh
+fogprint summary --src "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261004T005208+0900.fwss"
+fogprint summary --src snapshot:2026-10-04          # 日付で指定（YYYY-MM だけならその月の最新）
+fogprint diff snapshot:2026-10-04 snapshot:2026-10-19
+```
+
 ## コマンド
 
 すべてのコマンドは JSON を出力します。地点は `緯度,経度`（Google マップでコピーされる順）、範囲は `--bbox 西,南,東,北` で指定します（最初の数が負のときは `--bbox=-10,...`）。

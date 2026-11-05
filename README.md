@@ -152,6 +152,14 @@ Turn on sync in Fog of World (iCloud Drive or Dropbox). Fogprint looks in:
 
 Inside that folder it reads the live `Sync` folder, the extra databases in `Databases/*.fwdb` (often one per trip), the dated snapshots in `Databases/Primary.fwdb/Snapshots`, and `Sync*.zip` copies. Anywhere else: `fogprint --src <folder or zip>` or set `FOGPRINT_DATA`.
 
+Snapshots (`Snapshot-<date>.fwss`) can be read directly. Fog of World saves one every so often, so they are also how you look at your map as it was on a given day, or see what a trip added:
+
+```sh
+fogprint summary --src "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261004T005208+0900.fwss"
+fogprint summary --src snapshot:2026-10-04          # by date (YYYY-MM picks the newest that month)
+fogprint diff snapshot:2026-10-04 snapshot:2026-10-19
+```
+
 ## Commands
 
 All commands print JSON. Points are `LAT,LNG` (the order Google Maps copies); boxes are `--bbox WEST,SOUTH,EAST,NORTH` (use `--bbox=-10,...` when it starts with a minus sign).
