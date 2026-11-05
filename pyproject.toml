@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fogprint"
+version = "0.1.0"
+description = "Read Fog of World data and analyse where you have been: regions, routes, gaps, maps. Built for AI agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "b-z"}]
+keywords = ["fog-of-world", "gps", "travel", "footprint", "map", "claude", "skill"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = ["numpy>=1.23", "shapely>=2.0", "pillow>=9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.urls]
+Homepage = "https://github.com/b-z/fogprint"
+Issues = "https://github.com/b-z/fogprint/issues"
+
+[project.scripts]
+fogprint = "fogprint.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 130
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
