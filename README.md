@@ -201,6 +201,10 @@ Everything runs on your computer. Fogprint downloads boundary files, OpenStreetM
 - Municipalities and districts: [geoBoundaries](https://www.geoboundaries.org) (license per country, mostly CC BY 4.0 / ODbL; shown in the output).
 - Railways, roads, streets and basemap tiles: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors (ODbL), via the Overpass API and tile.openstreetmap.org. Please respect their [usage policies](https://operations.osmfoundation.org/policies/).
 
+## Related
+
+[Fog Trace](https://github.com/b-z/fog-trace) ([open in browser](https://b-z.github.io/fog-trace/)) is a web page by the same author for fixing the archive itself: it finds the places where your tracks break off, lets you review them one by one, erase GPS jumps and draw missing roads, then exports an archive you can import back into Fog of World. Fogprint only reads and analyses; use Fog Trace when you want to edit.
+
 ## Support the project
 
 Fogprint is maintained in spare time. If it helps you explore, you can support it through [GitHub Sponsors](https://github.com/sponsors/b-z) or with WeChat. Sponsoring is entirely optional and does not affect how issues or pull requests are handled.

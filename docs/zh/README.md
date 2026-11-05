@@ -201,6 +201,10 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # zoom 14 下的已探索格
 - 市县区边界：[geoBoundaries](https://www.geoboundaries.org)（各国许可不同，多为 CC BY 4.0 / ODbL，输出里会写明）。
 - 铁路、道路、街道和底图瓦片：© [OpenStreetMap](https://www.openstreetmap.org/copyright) 贡献者（ODbL），通过 Overpass API 和 tile.openstreetmap.org 获取。请遵守它们的[使用政策](https://operations.osmfoundation.org/policies/)。
 
+## 相关项目
+
+[Fog Trace · 迷雾轨迹断头复查](https://github.com/b-z/fog-trace)（[在线使用](https://b-z.github.io/fog-trace/)）是同一作者做的网页工具，用来修改存档本身：自动找出轨迹断开的地方逐个复查，擦掉 GPS 飘出去的线、补上缺的路，再导出成 App 能导入的存档。Fogprint 只读取和分析；想改存档时用 Fog Trace。
+
 ## 支持这个项目
 
 Fogprint 是在业余时间维护的。如果它帮你点亮了更多地图，欢迎通过 [GitHub Sponsors](https://github.com/sponsors/b-z) 或微信赞赏支持。赞助完全自愿，不会影响 Issue 和 Pull Request 的处理。

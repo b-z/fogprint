@@ -201,6 +201,10 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # ズーム 14 の探索済�
 - 市区町村の境界：[geoBoundaries](https://www.geoboundaries.org)（国ごとにライセンスが異なり、多くは CC BY 4.0 / ODbL。出力に記載されます）。
 - 鉄道、道路、街路、背景地図タイル：© [OpenStreetMap](https://www.openstreetmap.org/copyright) 貢献者（ODbL）。Overpass API と tile.openstreetmap.org から取得します。[利用ポリシー](https://operations.osmfoundation.org/policies/)を守ってください。
 
+## 関連プロジェクト
+
+[Fog Trace](https://github.com/b-z/fog-trace)（[ブラウザで開く](https://b-z.github.io/fog-trace/)）は同じ作者による Web ツールで、データそのものを修正するためのものです。軌跡が途切れている場所を自動で見つけて 1 つずつ確認し、GPS の飛びを消したり足りない道を描き足したりして、アプリに取り込める形で書き出せます。Fogprint は読み込みと分析だけを行います。データを編集したいときは Fog Trace を使ってください。
+
 ## プロジェクトを支援する
 
 Fogprint は空き時間に保守しています。地図を晴らすのに役立ったら、[GitHub Sponsors](https://github.com/sponsors/b-z) や WeChat で支援していただけるとうれしいです。支援は任意で、Issue やプルリクエストの扱いには影響しません。
