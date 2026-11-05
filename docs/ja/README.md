@@ -1,12 +1,12 @@
-# fogprint
+# Fogprint
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/b-z)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](../../SPONSOR.md)
 
 [English](../../README.md) · [中文](../zh/README.md)
 
 **フォグオブワールドの地図を AI に読ませる：どこへ行ったか、どこが残っているか、どう埋めるか。**
 
-fogprint は [フォグオブワールド（Fog of World）](https://fogofworld.app) の同期データを読み込み、Claude Code や Codex などの AI エージェントがそのまま使える形にします。コマンドラインツールと、その使い方をエージェントに教えるスキルのセットです。インストールしたら、あとは話しかけるだけです。
+Fogprint は [フォグオブワールド（Fog of World）](https://fogofworld.app) の同期データを読み込み、Claude Code や Codex などの AI エージェントがそのまま使える形にします。コマンドラインツールと、その使い方をエージェントに教えるスキルのセットです。インストールしたら、あとは話しかけるだけです。
 
 - 「アメリカでまだ行ったことのない州は？ 1 週間でできるだけ多く回る旅程を作って」
 - 「九州の JR で乗っていない区間は？ 3 日間のフリーきっぷで長い区間から埋めたい」
@@ -18,7 +18,7 @@ fogprint は [フォグオブワールド（Fog of World）](https://fogofworld.
 
 世界中で使えます。国と州・県の境界は Natural Earth、各国の市区町村は geoBoundaries、道路・鉄道・街路は OpenStreetMap のデータを使います。
 
-> fogprint は独立したプロジェクトで、フォグオブワールドおよびその開発元とは関係ありません。データを読むだけで、アプリのフォルダには書き込みません。
+> Fogprint は独立したプロジェクトで、フォグオブワールドおよびその開発元とは関係ありません。データを読むだけで、アプリのフォルダには書き込みません。
 
 ## 例
 
@@ -144,7 +144,7 @@ Python 3.10 以上。依存パッケージ：numpy、shapely、pillow。
 
 ## データの場所
 
-フォグオブワールドで同期（iCloud Drive または Dropbox）をオンにしてください。fogprint は次の場所を探します。
+フォグオブワールドで同期（iCloud Drive または Dropbox）をオンにしてください。Fogprint は次の場所を探します。
 
 - macOS：`~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents`
 - Windows（iCloud for Windows）：`~/iCloudDrive/iCloud~com~ollix~FogOfWorld`
@@ -193,7 +193,7 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # ズーム 14 の探索済�
 
 ## プライバシー
 
-処理はすべて手元のコンピューターで行います。fogprint は境界データ、OpenStreetMap のライン、地図タイルをダウンロードしますが、あなたのデータをどこかへ送ることはありません。エージェントは、ほかのファイルを開かせたときと同じように、読み込んだ結果を見ます。足跡の地図からは住んでいる場所やよく行く場所がわかるので、共有するときは注意してください。
+処理はすべて手元のコンピューターで行います。Fogprint は境界データ、OpenStreetMap のライン、地図タイルをダウンロードしますが、あなたのデータをどこかへ送ることはありません。エージェントは、ほかのファイルを開かせたときと同じように、読み込んだ結果を見ます。足跡の地図からは住んでいる場所やよく行く場所がわかるので、共有するときは注意してください。
 
 ## データの出典
 
@@ -203,7 +203,7 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # ズーム 14 の探索済�
 
 ## プロジェクトを支援する
 
-fogprint は空き時間に保守しています。地図を晴らすのに役立ったら、[GitHub Sponsors](https://github.com/sponsors/b-z) や WeChat で支援していただけるとうれしいです。支援は任意で、Issue やプルリクエストの扱いには影響しません。
+Fogprint は空き時間に保守しています。地図を晴らすのに役立ったら、[GitHub Sponsors](https://github.com/sponsors/b-z) や WeChat で支援していただけるとうれしいです。支援は任意で、Issue やプルリクエストの扱いには影響しません。
 
 <table><tr>
 <td align="center" valign="middle"><a href="https://github.com/sponsors/b-z"><img src="https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4%20Sponsor-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor on GitHub" height="36"></a></td>

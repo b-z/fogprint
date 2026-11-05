@@ -1,12 +1,12 @@
-# fogprint
+# Fogprint
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/b-z)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](SPONSOR.md)
 
 [中文](docs/zh/README.md) · [日本語](docs/ja/README.md)
 
 **Ask an AI about your Fog of World map: where you have been, what is left, and how to get there.**
 
-fogprint reads the data of [Fog of World](https://fogofworld.app) (the app that clears a fog wherever you go) and turns it into answers an AI agent such as Claude Code or Codex can work with. It comes as a command-line tool plus a skill that teaches the agent how to use it, so you can simply ask:
+Fogprint reads the data of [Fog of World](https://fogofworld.app) (the app that clears a fog wherever you go) and turns it into answers an AI agent such as Claude Code or Codex can work with. It comes as a command-line tool plus a skill that teaches the agent how to use it, so you can simply ask:
 
 - "Which states of the US have I never set foot in? Plan a week that ticks off as many as possible."
 - "Which JR lines in Kyushu have I not ridden yet? Make a 3-day rail-pass itinerary for the longest gaps."
@@ -18,7 +18,7 @@ fogprint reads the data of [Fog of World](https://fogofworld.app) (the app that 
 
 It works anywhere in the world: country and state boundaries come from Natural Earth, municipalities and districts of any country from geoBoundaries, and roads, railways and streets from OpenStreetMap.
 
-> fogprint is an independent project and is not affiliated with Fog of World or its developer. It only reads your data and never writes to the app's folder.
+> Fogprint is an independent project and is not affiliated with Fog of World or its developer. It only reads your data and never writes to the app's folder.
 
 ## Examples
 
@@ -144,7 +144,7 @@ Python 3.10 or newer. Dependencies: numpy, shapely, pillow.
 
 ## Where your data is
 
-Turn on sync in Fog of World (iCloud Drive or Dropbox). fogprint looks in:
+Turn on sync in Fog of World (iCloud Drive or Dropbox). Fogprint looks in:
 
 - macOS: `~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents`
 - Windows (iCloud for Windows): `~/iCloudDrive/iCloud~com~ollix~FogOfWorld`
@@ -193,7 +193,7 @@ The file format is described in [`src/fogprint/fogformat.py`](src/fogprint/fogfo
 
 ## Privacy
 
-Everything runs on your computer. fogprint downloads boundary files, OpenStreetMap lines and map tiles, but never sends your data anywhere. Your agent sees the results it reads, as with any file you open with it. Maps of your explored area show where you live and travel, so think before sharing them.
+Everything runs on your computer. Fogprint downloads boundary files, OpenStreetMap lines and map tiles, but never sends your data anywhere. Your agent sees the results it reads, as with any file you open with it. Maps of your explored area show where you live and travel, so think before sharing them.
 
 ## Data and credits
 
@@ -203,7 +203,7 @@ Everything runs on your computer. fogprint downloads boundary files, OpenStreetM
 
 ## Support the project
 
-fogprint is maintained in spare time. If it helps you explore, you can support it through [GitHub Sponsors](https://github.com/sponsors/b-z) or with WeChat. Sponsoring is entirely optional and does not affect how issues or pull requests are handled.
+Fogprint is maintained in spare time. If it helps you explore, you can support it through [GitHub Sponsors](https://github.com/sponsors/b-z) or with WeChat. Sponsoring is entirely optional and does not affect how issues or pull requests are handled.
 
 <table><tr>
 <td align="center" valign="middle"><a href="https://github.com/sponsors/b-z"><img src="https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4%20Sponsor-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor on GitHub" height="36"></a></td>

@@ -1,12 +1,12 @@
-# fogprint
+# Fogprint
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/b-z)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE) [![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=githubsponsors&logoColor=white)](../../SPONSOR.md)
 
 [English](../../README.md) · [日本語](../ja/README.md)
 
 **让 AI 读懂你的《世界迷雾》地图：去过哪里、还差哪里、怎么去补。**
 
-fogprint 读取 [世界迷雾（Fog of World）](https://fogofworld.app) 的同步数据，整理成 Claude Code、Codex 这类 AI 工具能直接用的结果。它由一个命令行工具和一个 skill 组成：命令行负责解析和计算，skill 告诉 AI 怎么用。装好之后直接提问就行：
+Fogprint 读取 [世界迷雾（Fog of World）](https://fogofworld.app) 的同步数据，整理成 Claude Code、Codex 这类 AI 工具能直接用的结果。它由一个命令行工具和一个 skill 组成：命令行负责解析和计算，skill 告诉 AI 怎么用。装好之后直接提问就行：
 
 - “美国哪些州我还没去过？排一个一周的行程，尽量多去几个。”
 - “九州的 JR 线路里哪些我还没坐过？用 3 天的周游券把最长的几段补上。”
@@ -18,7 +18,7 @@ fogprint 读取 [世界迷雾（Fog of World）](https://fogofworld.app) 的同�
 
 全球通用：国家和一级行政区边界来自 Natural Earth，任意国家的市县区来自 geoBoundaries，道路、铁路、街道来自 OpenStreetMap。
 
-> fogprint 是独立项目，与世界迷雾及其开发者无关。它只读取你的数据，不会写入 App 的文件夹。
+> Fogprint 是独立项目，与世界迷雾及其开发者无关。它只读取你的数据，不会写入 App 的文件夹。
 
 ## 示例
 
@@ -144,7 +144,7 @@ fogprint summary
 
 ## 数据在哪里
 
-在世界迷雾里打开同步（iCloud Drive 或 Dropbox）。fogprint 会在这些位置查找：
+在世界迷雾里打开同步（iCloud Drive 或 Dropbox）。Fogprint 会在这些位置查找：
 
 - macOS：`~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents`
 - Windows（iCloud for Windows）：`~/iCloudDrive/iCloud~com~ollix~FogOfWorld`
@@ -193,7 +193,7 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # zoom 14 下的已探索格
 
 ## 隐私
 
-所有计算都在你自己的电脑上进行。fogprint 会下载边界数据、OpenStreetMap 线路和地图瓦片，但不会把你的数据发到任何地方。AI 工具能看到它读取的结果，和你让它打开其他文件一样。足迹地图能看出你住在哪里、常去哪里，分享前请留意。
+所有计算都在你自己的电脑上进行。Fogprint 会下载边界数据、OpenStreetMap 线路和地图瓦片，但不会把你的数据发到任何地方。AI 工具能看到它读取的结果，和你让它打开其他文件一样。足迹地图能看出你住在哪里、常去哪里，分享前请留意。
 
 ## 数据来源
 
@@ -203,7 +203,7 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # zoom 14 下的已探索格
 
 ## 支持这个项目
 
-fogprint 是在业余时间维护的。如果它帮你点亮了更多地图，欢迎通过 [GitHub Sponsors](https://github.com/sponsors/b-z) 或微信赞赏支持。赞助完全自愿，不会影响 Issue 和 Pull Request 的处理。
+Fogprint 是在业余时间维护的。如果它帮你点亮了更多地图，欢迎通过 [GitHub Sponsors](https://github.com/sponsors/b-z) 或微信赞赏支持。赞助完全自愿，不会影响 Issue 和 Pull Request 的处理。
 
 <table><tr>
 <td align="center" valign="middle"><a href="https://github.com/sponsors/b-z"><img src="https://img.shields.io/badge/GitHub%20Sponsors-%E2%9D%A4%20Sponsor-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="Sponsor on GitHub" height="36"></a></td>

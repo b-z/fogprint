@@ -1,4 +1,4 @@
-"""fogprint: read Fog of World data and make it easy to analyse."""
+"""Fogprint: read Fog of World data and make it easy to analyse."""
 
 __version__ = "0.1.0"
 
