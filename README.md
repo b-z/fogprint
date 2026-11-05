@@ -185,6 +185,7 @@ x, y, pixels, lng, lat, km2 = fog.grid_lnglat(14)   # explored cells at zoom 14
 ## What the data can and cannot tell
 
 - Fog of World stores a bitmap of revealed pixels on a Web Mercator grid of 2²² × 2²² pixels, about 9.5 m × cos(latitude) each. There are **no timestamps**, so "when" questions can only be answered by comparing snapshots.
+- Area, world percentage and level follow Fog of World's own rules (reverse-engineered by the "迷雾资料库" articles): each revealed pixel counts (9.5546 m × cos(latitude))², the earth is 510,072,000 km², level = ⌊√(250 × km²)⌋. Country numbers are assigned by grid cell, so they can differ slightly from the app's passports near borders.
 - "Explored area" is the revealed area itself. A drive reveals a strip a few dozen meters wide, so visiting a whole country can mean a tiny percentage of it.
 - A region crossed by a flight or a fast train with GPS on counts as visited. The `cells` and `explored_km2` fields show how much was actually seen.
 

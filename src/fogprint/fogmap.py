@@ -65,7 +65,16 @@ class FogMap:
         return int(self.tile_pixels().sum())
 
     def tile_area_km2(self) -> np.ndarray:
-        return self.tile_pixels() * geo.cell_area_km2(self.tiles[:, 1].astype(float) * TILE_PX + TILE_PX / 2 - 0.5, 22)
+        """Explored area per tile: each pixel counts (9.5546 m x cos(lat))^2,
+        with the latitude of its own row, as Fog of World does."""
+        out = np.zeros(len(self), float)
+        rows = np.arange(TILE_PX)
+        for i in range(0, len(self), 20000):
+            t = self.tiles[i:i + 20000]
+            per_row = _POP[self.bitmaps[i:i + 20000].reshape(-1, TILE_PX, TILE_PX // 8)].sum(axis=2)
+            ys = t[:, 1:2].astype(float) * TILE_PX + rows[None, :]
+            out[i:i + 20000] = (per_row * geo.cell_area_km2(ys, 22)).sum(axis=1)
+        return out
 
     def area_km2(self) -> float:
         return float(self.tile_area_km2().sum())

@@ -8,7 +8,11 @@ import math
 import numpy as np
 
 EARTH_RADIUS_M = 6371008.8
-EQUATOR_M = 40075016.686
+# Values used by Fog of World itself (reverse-engineered by the "迷雾资料库" articles):
+# pixel width = 40075.017 km / 2**22 * cos(latitude); the earth's surface = 510,072,000 km^2;
+# level = sqrt(250 * explored km^2).
+EQUATOR_M = 40075017.0
+EARTH_AREA_KM2 = 510_072_000.0
 MAX_LAT = 85.05112878
 
 
@@ -36,6 +40,16 @@ def cell_area_km2(y, zoom: int):
     _, lat = px_to_lnglat(0, np.asarray(y, float) + 0.5, zoom)
     side_km = EQUATOR_M / 1000.0 * np.cos(np.radians(lat)) / (1 << zoom)
     return side_km * side_km
+
+
+def level(km2: float) -> int:
+    """Fog of World's level for an explored area (the same rule applies to
+    the whole world and to each country's passport)."""
+    return int(math.floor(math.sqrt(250.0 * max(0.0, km2)) + 1e-9))
+
+
+def world_pct(km2: float) -> float:
+    return 100.0 * km2 / EARTH_AREA_KM2
 
 
 def pixel_size_m(lat: float, zoom: int = 22) -> float:

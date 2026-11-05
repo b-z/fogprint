@@ -286,7 +286,7 @@ def region_stats(fog: FogMap, b: Boundaries, zoom: int = 16, include_unvisited: 
         lng0, lat0 = b.centroid(i)
         out.append({
             "name": f["name"], "name_en": f["name_en"], "id": f["id"], "country": f["country"],
-            "visited": km2 > 0, "explored_km2": round(km2, 3), "cells": cells,
+            "visited": km2 > 0, "explored_km2": round(km2, 3), "level": geo.level(km2), "cells": cells,
             "region_km2": round(float(total[i]), 1),
             "explored_pct": round(100 * km2 / total[i], 3) if total[i] > 0 else None,
             "center": [round(lng0, 5), round(lat0, 5)],

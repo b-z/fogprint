@@ -35,6 +35,7 @@ By default commands read the main database (live `Sync` folder, else the newest 
 ## 3. What the data is, and is not
 
 - A bitmap of revealed pixels on a Web Mercator grid of 2^22 pixels (about 9.5 m × cos(latitude) per pixel). No timestamps, no speeds, no order of travel. Time questions can only be answered by comparing snapshots (`diff`), e.g. "what was added between Jan and Aug 2024".
+- `summary` gives `explored_km2`, `world_pct` and `level` computed the way the Fog of World app does (pixel = (9.5546 m × cos lat)², earth = 510,072,000 km², level = floor(sqrt(250 × km²))), so they should match the app. Per-country numbers are by grid cell and can differ slightly from the app's passports.
 - `explored_km2` is the revealed area itself. A road trip reveals a strip of a few dozen meters, so a country can be "visited" with a tiny percentage. For "have I been to X", use `visited` / `cells`, not the percentage.
 - Flights and fast trains with GPS on leave straight or patchy lines. A region crossed only by such a line counts as visited; when it matters, check `explored_km2` or `cells` and mention it.
 - Region boundaries: Natural Earth for `country` / `admin1` (worldwide, coarse near coasts and small islands), geoBoundaries for `ADM1`..`ADM5` of one country (names are usually romanized). For official local boundaries, download a GeoJSON and use `--boundaries`.

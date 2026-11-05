@@ -5,65 +5,219 @@
   "database": "all",
   "modified": "2026-11-03T21:40:12+09:00"
  },
- "explored_km2": 664.38,
+ "explored_km2": 664.37822,
+ "world_pct": 0.000130252,
+ "level": 407,
  "explored_pixels": 11349822,
  "tiles_z16": 154965,
  "bbox": [2.2467041015625, -46.134170046243256, 175.6878662109375, 52.254708801130825],
  "cells_z10": 1435,
  "cells_z12": 7165,
  "cells_z14": 34299,
- "note": "explored_km2 counts the revealed pixels (about 9.5 m x cos(lat) each); cells_zN is the number of zoom-N map tiles touched (z14 tile ~ 2.4 km x cos(lat))",
+ "note": "explored_km2, world_pct and level follow Fog of World's own rules: each revealed pixel is (9.5546 m x cos(lat))^2, the earth is 510,072,000 km^2, level = floor(sqrt(250 x km2)); countries are assigned by grid cell, so their sum can differ slightly from the app's passports. cells_zN is the number of zoom-N map tiles touched (z14 tile ~ 2.4 km x cos(lat))",
  "countries": [
   {
    "name": "Japan",
    "id": "JPN",
    "explored_km2": 344.182,
+   "level": 293,
    "explored_pct": 0.092
   },
   {
    "name": "People's Republic of China",
    "id": "CHN",
    "explored_km2": 139.017,
+   "level": 186,
    "explored_pct": 0.001
   },
   {
    "name": "Kazakhstan",
    "id": "KAZ",
    "explored_km2": 18.974,
+   "level": 68,
    "explored_pct": 0.001
   },
   {
    "name": "France",
    "id": "FRA",
    "explored_km2": 18.32,
+   "level": 67,
    "explored_pct": 0.003
   },
   {
    "name": "Thailand",
    "id": "THA",
    "explored_km2": 15.906,
+   "level": 63,
    "explored_pct": 0.003
   },
   {
    "name": "New Zealand",
    "id": "NZL",
    "explored_km2": 14.1,
+   "level": 59,
    "explored_pct": 0.005
   },
   {
    "name": "Turkey",
    "id": "TUR",
    "explored_km2": 13.107,
+   "level": 57,
    "explored_pct": 0.002
   },
   {
    "name": "Australia",
    "id": "AUS",
    "explored_km2": 12.851,
+   "level": 56,
    "explored_pct": 0.0
   },
   {
-   "...": "21 more"
+   "name": "Taiwan",
+   "id": "TWN",
+   "explored_km2": 11.877,
+   "level": 54,
+   "explored_pct": 0.033
+  },
+  {
+   "name": "South Korea",
+   "id": "KOR",
+   "explored_km2": 9.29,
+   "level": 48,
+   "explored_pct": 0.009
+  },
+  {
+   "name": "Cambodia",
+   "id": "KHM",
+   "explored_km2": 6.32,
+   "level": 39,
+   "explored_pct": 0.003
+  },
+  {
+   "name": "Mongolia",
+   "id": "MNG",
+   "explored_km2": 6.01,
+   "level": 38,
+   "explored_pct": 0.0
+  },
+  {
+   "name": "Malaysia",
+   "id": "MYS",
+   "explored_km2": 5.466,
+   "level": 36,
+   "explored_pct": 0.002
+  },
+  {
+   "name": "Georgia",
+   "id": "GEO",
+   "explored_km2": 5.123,
+   "level": 35,
+   "explored_pct": 0.007
+  },
+  {
+   "name": "Armenia",
+   "id": "ARM",
+   "explored_km2": 5.033,
+   "level": 35,
+   "explored_pct": 0.017
+  },
+  {
+   "name": "Nepal",
+   "id": "NPL",
+   "explored_km2": 4.311,
+   "level": 32,
+   "explored_pct": 0.003
+  },
+  {
+   "name": "Uzbekistan",
+   "id": "UZB",
+   "explored_km2": 4.185,
+   "level": 32,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Czech Republic",
+   "id": "CZE",
+   "explored_km2": 3.877,
+   "level": 31,
+   "explored_pct": 0.005
+  },
+  {
+   "name": "Austria",
+   "id": "AUT",
+   "explored_km2": 3.656,
+   "level": 30,
+   "explored_pct": 0.004
+  },
+  {
+   "name": "Vietnam",
+   "id": "VNM",
+   "explored_km2": 3.165,
+   "level": 28,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Poland",
+   "id": "POL",
+   "explored_km2": 3.02,
+   "level": 27,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Hong Kong",
+   "id": "HKG",
+   "explored_km2": 2.772,
+   "level": 26,
+   "explored_pct": 0.267
+  },
+  {
+   "name": "Guam",
+   "id": "GUM",
+   "explored_km2": 2.391,
+   "level": 24,
+   "explored_pct": 0.422
+  },
+  {
+   "name": "Azerbaijan",
+   "id": "AZE",
+   "explored_km2": 1.939,
+   "level": 22,
+   "explored_pct": 0.002
+  },
+  {
+   "name": "Slovakia",
+   "id": "SVK",
+   "explored_km2": 0.606,
+   "level": 12,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Hungary",
+   "id": "HUN",
+   "explored_km2": 0.552,
+   "level": 11,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Monaco",
+   "id": "MCO",
+   "explored_km2": 0.28,
+   "level": 8,
+   "explored_pct": 1.49
+  },
+  {
+   "name": "Brunei",
+   "id": "BRN",
+   "explored_km2": 0.083,
+   "level": 4,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Italy",
+   "id": "ITA",
+   "explored_km2": 0.018,
+   "level": 2,
+   "explored_pct": 0.0
   }
  ],
  "admin1_visited": 251,

@@ -109,18 +109,22 @@ def cmd_locate(args):
 
 def cmd_summary(args):
     fog = load(args)
-    out = {"source": src_info(fog), "explored_km2": round(fog.area_km2(), 2), "explored_pixels": fog.pixel_count(),
+    km2 = fog.area_km2()
+    out = {"source": src_info(fog), "explored_km2": round(km2, 6), "world_pct": float(f"{geo.world_pct(km2):.6g}"),
+           "level": geo.level(km2), "explored_pixels": fog.pixel_count(),
            "tiles_z16": len(fog), "bbox": fog.bbox()}
     for z in (10, 12, 14):
         out[f"cells_z{z}"] = int(len(fog.grid(z)[0]))
-    out["note"] = ("explored_km2 counts the revealed pixels (about 9.5 m x cos(lat) each); cells_zN is the number "
-                   "of zoom-N map tiles touched (z14 tile ~ 2.4 km x cos(lat))")
+    out["note"] = ("explored_km2, world_pct and level follow Fog of World's own rules: each revealed pixel is "
+                   "(9.5546 m x cos(lat))^2, the earth is 510,072,000 km^2, level = floor(sqrt(250 x km2)); "
+                   "countries are assigned by grid cell, so their sum can differ slightly from the app's passports. "
+                   "cells_zN is the number of zoom-N map tiles touched (z14 tile ~ 2.4 km x cos(lat))")
     if not args.no_regions and len(fog):
         from .regions import Boundaries, region_stats
         try:
             b = Boundaries.load("country", lang=args.lang)
             rs = region_stats(fog, b, zoom=14, include_unvisited=False)
-            out["countries"] = [{k: r[k] for k in ("name", "id", "explored_km2", "explored_pct")} for r in rs]
+            out["countries"] = [{k: r[k] for k in ("name", "id", "explored_km2", "level", "explored_pct")} for r in rs]
             b1 = Boundaries.load("admin1", lang=args.lang)
             r1 = region_stats(fog, b1, zoom=14, include_unvisited=False)
             per = {}
