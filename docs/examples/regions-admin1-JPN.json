@@ -1,0 +1,61 @@
+{
+ "source": {
+  "path": "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Kochi 2026-11.fwdb/Sync + ~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261019T091727+0900.fwss",
+  "kind": "union",
+  "database": "all",
+  "modified": "2026-11-03T21:40:12+09:00"
+ },
+ "boundaries": "Natural Earth (public domain)",
+ "regions_total": 47,
+ "regions_visited": 46,
+ "regions": [
+  {
+   "name": "Tokyo",
+   "name_en": "Tokyo",
+   "id": "JP-13",
+   "country": "JPN",
+   "visited": true,
+   "explored_km2": 36.399,
+   "cells": 2796,
+   "region_km2": 2183.4,
+   "explored_pct": 1.667,
+   "center": [139.47124, 35.68489]
+  },
+  {
+   "name": "Hokkaidō",
+   "name_en": "Hokkaidō",
+   "id": "JP-01",
+   "country": "JPN",
+   "visited": true,
+   "explored_km2": 32.833,
+   "cells": 9934,
+   "region_km2": 78637.5,
+   "explored_pct": 0.042,
+   "center": [143.33765, 43.46212]
+  },
+  {
+   "name": "Kanagawa Prefecture",
+   "name_en": "Kanagawa Prefecture",
+   "id": "JP-14",
+   "country": "JPN",
+   "visited": true,
+   "explored_km2": 18.966,
+   "cells": 2295,
+   "region_km2": 2384.2,
+   "explored_pct": 0.796,
+   "center": [139.31445, 35.38393]
+  },
+  {
+   "name": "Fukui Prefecture",
+   "name_en": "Fukui Prefecture",
+   "id": "JP-18",
+   "country": "JPN",
+   "visited": false,
+   "explored_km2": 0.0,
+   "cells": 0,
+   "region_km2": 4220.2,
+   "explored_pct": 0.0,
+   "center": [136.42952, 35.80352]
+  }
+ ]
+}

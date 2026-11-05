@@ -1,0 +1,74 @@
+{
+ "old": {
+  "path": "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2024/01 JAN/Snapshot-20240108T204833+0900.fwss",
+  "kind": "snapshot",
+  "database": "main",
+  "modified": "2024-01-08T20:48:33+09:00"
+ },
+ "new": {
+  "path": "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261019T091727+0900.fwss",
+  "kind": "snapshot",
+  "database": "main",
+  "modified": "2026-10-19T09:17:27+09:00"
+ },
+ "old_km2": 385.74,
+ "new_km2": 655.62,
+ "added_km2": 270.04,
+ "removed_km2": 0.16,
+ "added_by_region": [
+  {
+   "country": "People's Republic of China",
+   "country_code": "CHN",
+   "region": "Tibet",
+   "explored_km2": 28.108,
+   "center": [90.59322, 29.67355],
+   "bbox": [86.803, 28.0041, 94.8889, 31.644],
+   "cells": 1534
+  },
+  {
+   "country": "People's Republic of China",
+   "country_code": "CHN",
+   "region": "Qinghai",
+   "explored_km2": 7.798,
+   "center": [100.65145, 37.10022],
+   "bbox": [99.0637, 36.3948, 102.052, 38.195],
+   "cells": 587
+  },
+  {
+   "country": "Kazakhstan",
+   "country_code": "KAZ",
+   "region": "Mangystau",
+   "explored_km2": 7.224,
+   "center": [53.06899, 44.02384],
+   "bbox": [51.0754, 43.3332, 56.6345, 45.4678],
+   "cells": 661
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Tokyo",
+   "explored_km2": 7.162,
+   "center": [139.72419, 35.65712],
+   "bbox": [139.1858, 34.6965, 139.8669, 35.7911],
+   "cells": 208
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Kagoshima Prefecture",
+   "explored_km2": 7.058,
+   "center": [130.69799, 31.28588],
+   "bbox": [130.2869, 30.3634, 131.0779, 31.8122],
+   "cells": 365
+  },
+  {
+   "country": "People's Republic of China",
+   "country_code": "CHN",
+   "region": "Gansu",
+   "explored_km2": 6.587,
+   "center": [97.52412, 39.77619],
+   "bbox": [94.4275, 36.5008, 103.6121, 40.5722],
+   "cells": 496
+  }
+ ]
+}

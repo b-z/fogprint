@@ -1,0 +1,56 @@
+{
+ "source": {
+  "path": "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Kochi 2026-11.fwdb/Sync",
+  "kind": "sync-folder",
+  "database": "Kochi 2026-11",
+  "modified": "2026-11-03T21:40:12+09:00"
+ },
+ "zoom": 14,
+ "places": [
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Kōchi Prefecture",
+   "explored_km2": 4.235,
+   "center": [133.3732, 33.25854],
+   "bbox": [132.6379, 32.7226, 134.2859, 33.843],
+   "cells": 262
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Shizuoka Prefecture",
+   "explored_km2": 2.414,
+   "center": [138.36137, 35.02825],
+   "bbox": [137.6257, 34.8228, 138.988, 35.3443],
+   "cells": 106
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Hyōgo Prefecture",
+   "explored_km2": 1.787,
+   "center": [134.94413, 34.71186],
+   "bbox": [134.3079, 34.2436, 135.4285, 34.8949],
+   "cells": 146
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Aichi Prefecture",
+   "explored_km2": 1.599,
+   "center": [137.17564, 35.02502],
+   "bbox": [136.7468, 34.8769, 137.6257, 35.2905],
+   "cells": 96
+  },
+  {
+   "country": "Japan",
+   "country_code": "JPN",
+   "region": "Kanagawa Prefecture",
+   "explored_km2": 1.29,
+   "center": [139.36994, 35.4147],
+   "bbox": [138.988, 35.3443, 139.7131, 35.5412],
+   "cells": 79
+  }
+ ]
+}

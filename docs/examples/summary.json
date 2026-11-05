@@ -1,0 +1,102 @@
+{
+ "source": {
+  "path": "~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Kochi 2026-11.fwdb/Sync + ~/Library/Mobile Documents/iCloud~com~ollix~FogOfWorld/Documents/Databases/Primary.fwdb/Snapshots/2026/10 OCT/Snapshot-20261019T091727+0900.fwss",
+  "kind": "union",
+  "database": "all",
+  "modified": "2026-11-03T21:40:12+09:00"
+ },
+ "explored_km2": 664.38,
+ "explored_pixels": 11349822,
+ "tiles_z16": 154965,
+ "bbox": [2.2467041015625, -46.134170046243256, 175.6878662109375, 52.254708801130825],
+ "cells_z10": 1435,
+ "cells_z12": 7165,
+ "cells_z14": 34299,
+ "note": "explored_km2 counts the revealed pixels (about 9.5 m x cos(lat) each); cells_zN is the number of zoom-N map tiles touched (z14 tile ~ 2.4 km x cos(lat))",
+ "countries": [
+  {
+   "name": "Japan",
+   "id": "JPN",
+   "explored_km2": 344.182,
+   "explored_pct": 0.092
+  },
+  {
+   "name": "People's Republic of China",
+   "id": "CHN",
+   "explored_km2": 139.017,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "Kazakhstan",
+   "id": "KAZ",
+   "explored_km2": 18.974,
+   "explored_pct": 0.001
+  },
+  {
+   "name": "France",
+   "id": "FRA",
+   "explored_km2": 18.32,
+   "explored_pct": 0.003
+  },
+  {
+   "name": "Thailand",
+   "id": "THA",
+   "explored_km2": 15.906,
+   "explored_pct": 0.003
+  },
+  {
+   "name": "New Zealand",
+   "id": "NZL",
+   "explored_km2": 14.1,
+   "explored_pct": 0.005
+  },
+  {
+   "name": "Turkey",
+   "id": "TUR",
+   "explored_km2": 13.107,
+   "explored_pct": 0.002
+  },
+  {
+   "name": "Australia",
+   "id": "AUS",
+   "explored_km2": 12.851,
+   "explored_pct": 0.0
+  },
+  {
+   "...": "21 more"
+  }
+ ],
+ "admin1_visited": 251,
+ "admin1_visited_by_country": {
+  "JPN": 46,
+  "CHN": 22,
+  "KAZ": 7,
+  "AUS": 3,
+  "NZL": 5,
+  "KHM": 7,
+  "MNG": 5,
+  "MYS": 5,
+  "GUM": 1,
+  "TUR": 12,
+  "NPL": 4,
+  "THA": 18,
+  "KOR": 11,
+  "GEO": 5,
+  "VNM": 5,
+  "AZE": 2,
+  "TWN": 18,
+  "FRA": 26,
+  "AUT": 5,
+  "CZE": 5,
+  "POL": 4,
+  "ARM": 9,
+  "UZB": 6,
+  "HKG": 13,
+  "HUN": 2,
+  "SVK": 2,
+  "MCO": 1,
+  "BRN": 1,
+  "ITA": 1
+ },
+ "boundaries": "Natural Earth (public domain)"
+}
